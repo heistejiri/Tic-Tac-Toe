@@ -1,0 +1,174 @@
+*,
+*::after,
+*::before{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+:root{
+	--box-size: 100px;
+	--point-size: calc(var(--box-size) * .9);
+}
+.title h1{
+	color: #fff;
+	padding: 2%;
+	font-size: 2.3rem;
+	background-color: red;
+	display: inline-block;
+	margin-top: 10vh;
+	text-shadow: 0.1rem 0.1rem 0.1rem rgba(255, 255, 255, 0.5);
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+}
+.game{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	background-color: #060a1f;
+}
+.game-panel{
+	width: 100%;
+	height: 65vh;
+	display: grid;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	justify-items: center;
+	grid-template-columns: repeat(3, auto);
+}
+.box{
+	display: flex;
+	cursor: pointer;
+	width: var(--box-size);
+	height: var(--box-size);
+	position: relative;
+	align-items: center;
+	position: relative;
+	justify-content: center;
+	border: 1px solid #fff;
+}
+.box:first-child,
+.box:nth-child(2),
+.box:nth-child(3) {
+  border-top: none;
+}
+
+.box:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.box:nth-child(3n + 3) {
+  border-right: none;
+}
+
+.box:last-child,
+.box:nth-child(8),
+.box:nth-child(7) {
+  border-bottom: none;
+}
+
+.box.c::before,
+.box.x::after,
+.box.x::before{
+	background-color: #4acf15;
+}
+.box.x,
+.box.c {
+  cursor: not-allowed;
+}
+/* .game-panel.x .box:not(.x):not(.c):hover::before,
+.game-panel.x .box:not(.x):not(.c):hover::after,
+.game-panel.c .box:not(.x):not(.c):hover::before {
+  background-color: rgba(255, 255, 255, 0.1);
+} */
+.box.x::before,
+.box.x::after,
+.game-panel.x .box:not(.x):not(.c):hover::before,
+.game-panel.x .box:not(.x):not(.c):hover::after {
+	content: "";
+	position: absolute;
+	width: calc(var(--point-size) * .15);
+	height: var(--point-size);
+}
+.box.x::before,
+.game-panel.x .box:not(.x):not(.c):hover::before{
+  transform: rotate(45deg);
+}
+.box.x::after,
+.game-panel.x .box:not(.x):not(.c):hover::after {
+  transform: rotate(-45deg);
+}
+.box.c::before,
+.box.c::after,
+.game-panel.c .box:not(.x):not(.c):hover::before,
+.game-panel.c .box:not(.x):not(.c):hover::after {
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+}
+.box.c::before,
+.game-panel.c .box:not(.x):not(.c):hover::before{
+	width: var(--point-size);
+	height: var(--point-size);
+}
+.box.c::after,
+.game-panel.c .box:not(.x):not(.c):hover::after {
+	width: calc(var(--point-size) * .7);
+	height: calc(var(--point-size) * .7);
+	background-color: #060a1f;
+}
+
+.win_msg{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	color: red;
+	display: none;
+	font-size: 2.3rem;
+	position: fixed;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+.win_msg button{
+	margin-top: 5vh;
+	font-size: 3rem;
+	cursor: pointer;
+	padding: 10px 40px;
+	background-color: #fff;
+	border: none !important;
+	outline: none !important;
+	-webkit-transition: all 1s ease-in-out;
+		-moz-transition: all 1s ease-in-out;
+			-ms-transition: all 1s ease-in-out;
+				-o-transition: all 1s ease-in-out;
+					transition: all 1s ease-in-out;
+}
+.win_msg button:hover{
+	background-color: #4acf15;
+	box-shadow: 0.1rem 0.1rem 0.5rem rgba(255, 255, 255, 0.7),
+				0.1rem 0.1rem 0.5rem rgba(255, 255, 255, 0.7);
+}
+.win_msg.active {
+	display: flex;
+}
+
+  @media screen and (max-width: 767px){
+	.win_msg{
+		font-size: 2rem;
+	}
+	.win_msg button{
+		font-size: 1.5rem;
+		margin-top: 3vh;
+	}  
+  }
+  @media screen and (max-width: 500px){
+	.title h1{
+		padding: 3%;
+		font-size: 1.5rem;
+	}
+  }
